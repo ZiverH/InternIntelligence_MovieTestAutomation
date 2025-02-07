@@ -23,10 +23,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Make gradlew executable
-        run: chmod +x movie/gradlew 
+        run: chmod +x Movie/gradlew 
 
       - name: Install dependencies
-        run: movie/gradlew build
+        run: Movie/gradlew build
 
       - name: Run tests
-        run: movie/gradlew test
+        run: Movie/gradlew test
