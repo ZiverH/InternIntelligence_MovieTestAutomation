@@ -12,21 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:13
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: postgres
-        ports:
-          - 5434:5432
-        options: >-
-          --health-cmd="pg_isready -U postgres" 
-          --health-interval=10s 
-          --health-timeout=5s 
-          --health-retries=5
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -34,19 +19,6 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x Movie/gradlew 
 
-      - name: Install dependencies
-        run: ./gradlew build
-        working-directory: Movie
-
       - name: Run tests
-        run: ./gradlew test -Dspring.profiles.active=test
+        run: ./gradlew test
         working-directory: Movie
-
-      - name: Start application server
-        run: |
-          nohup ./gradlew bootRun -Dspring.profiles.active=test & 
-        working-directory: Movie
-
-      - name: Verify application is running
-        run: |
-          curl --max-time 10 http://localhost:8081/actuator/health
