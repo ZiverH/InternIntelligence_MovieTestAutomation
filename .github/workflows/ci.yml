@@ -20,7 +20,7 @@ jobs:
         run: chmod +x Movie/gradlew 
       - name: Run PostgreSQL container
         run: |
-          docker run --name postgresdss -d -e POSTGRES_PASSWORD=passddword -e POSTGRES_DB=postgres -p 5439:5432 postgres
+          docker run --name postgres -d -e POSTGRES_PASSWORD=password -e POSTGRES_DB=postgres -p 5434:5432 postgres
      
       - name: Run tests
         run: ./gradlew test
