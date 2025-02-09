@@ -20,7 +20,9 @@ jobs:
         run: chmod +x Movie/gradlew 
 
       - name: Install dependencies
-        run: Movie/gradlew build
+        run: ./gradlew build
+        working-directory: Movie
 
       - name: Run tests
-        run: Movie/gradlew test
+        run: ./gradlew test
+        working-directory: Movie
